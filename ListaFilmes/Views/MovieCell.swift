@@ -16,13 +16,15 @@ struct MovieCell: View {
             moviePoster
             
             VStack (alignment: .leading, spacing: 0) {
-                
+                movieTitle
                 
                 HStack{
                     movieVotes
                 
                     movieReleaseDate
                 }
+                
+                movieOverview
             }
         }
     }
@@ -35,7 +37,7 @@ struct MovieCell: View {
                 .resizable()
         }
         .frame(width: 100, height: 160)
-        .animation(.easeInOut(duration: 0.5))
+        .animation(.easeInOut, value: 0.5)
         .transition(.opacity)
         .scaledToFill()
         .cornerRadius(15)
@@ -56,6 +58,11 @@ struct MovieCell: View {
                 .stroke(Color.orange, lineWidth: 4)
                 .frame(width: 50)
                 .rotationEffect(.degrees(-90))
+            Circle()
+                .trim(from: 0, to: 1)
+                .stroke(Color.orange.opacity(0.2), lineWidth: 4)
+                .frame(width: 50)
+                .rotationEffect(.degrees(-90))
             Text(String.init(format: "%0.2f", movie.vote_average ?? 0.0))
                 .foregroundColor(.orange)
                 .font(.subheadline)
@@ -66,5 +73,11 @@ struct MovieCell: View {
         Text(movie.release_date ?? "")
             .foregroundColor(.black)
             .font(.subheadline)
+    }
+    
+    private var  movieOverview: some View {
+        Text(movie.overview ?? "")
+            .font(.body)
+            .foregroundColor(Color.cyan)
     }
 }
