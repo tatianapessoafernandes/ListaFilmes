@@ -17,6 +17,7 @@ struct Movie: Codable, Identifiable {
     var original_language: String?
     var overview: String?
     var poster_path: String?
+    var backdrop_path: String?
     var popularity: Double?
     var vote_average: Double?
     var vote_count: Int?
@@ -25,7 +26,7 @@ struct Movie: Codable, Identifiable {
     var release_date: String?
     var posterPath: String {
         if let path = poster_path {
-            return "http://image.tmdb.org/t/p/original/\(path)"
+            return "https://image.tmdb.org/t/p/original/\(path)"
         }else {
             return ""
         }
